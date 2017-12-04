@@ -1,5 +1,8 @@
 <?php
 
+namespace AppBundle\Service;
+
+
 /**
  * Class Crawler
  */
