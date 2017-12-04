@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Crawler;
 
 class DefaultController extends Controller
 {
@@ -19,13 +20,13 @@ class DefaultController extends Controller
         $crawler = new Crawler('http://www.watchland.com', 3);
 
 // connexion à une base de données nommée "marie" sur l'hôte "localhost" sur le port "5432"
-        $conn_string = "host=127.0.0.1 port=5432 dbname=datanalyser user=postgres password=Mq8aw7HJE";
+        /*$conn_string = "host=127.0.0.1 port=5432 dbname=datanalyser user=postgres password=Mq8aw7HJE";
         $dbconn = pg_connect($conn_string) or die ("Nao consegui conectar ao PostGres --> ". pg_last_error($dbconn));
         $select = "SELECT * FROM node";
         $clients = pg_query($dbconn, $select) or die ('Erreur : '.pg_last_error($conn_string));
         $total = pg_num_rows($clients);
         $crawler->crawl();
-        /*
+       */ /*
          $this->results[$url] = array(
                     'url' => $url,
                     'depth' => $depth,
@@ -33,10 +34,10 @@ class DefaultController extends Controller
                 );
          * */
 //1 insert data into db datanalyzer
-        foreach ($this->results as $key => $result) {
+        /*foreach ($this->results as $key => $result) {
             echo $result['url'];exit;
             $sql = "insert into node ()";
-        }
+        }*/
 //2- DRAW WEB GRAPHE
 
 
