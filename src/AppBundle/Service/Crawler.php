@@ -26,8 +26,8 @@ class Crawler
         $this->setHost($this->getHostFromUrl($url));
     }
 
-    public function __construct($url = null, $depth = null, $same_host = false)
-    {
+    public function __construct($url = null, $depth = 1, $same_host = false)
+    {echo $url;exit;
         if (!empty($url)) {
             $this->setUrl($url);
         }

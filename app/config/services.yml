@@ -4,6 +4,6 @@ parameters:
     #parameter_name: value
 
 services:
-    service_name:
-        class: AppBundle\Manager\DefaultManager
-        arguments: []
+    app.crawler:
+        class: AppBundle\Service\Crawler
+        arguments: ['%hub_url%', '%hub_depth%']

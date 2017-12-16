@@ -18,9 +18,12 @@ class DefaultController extends Controller
         /***********************************************************************/
         /*****************************COLLECTEUR********************************/
         /***********************************************************************/
-        $crawler = new Crawler('http://www.watchland.com', 3);
-        $this->getDefaultManager();
-exit('ici');
+
+        $crawler = $this->getAppCrawler();
+        $result = $crawler->crawl();
+
+
+
 // connexion à une base de données nommée "marie" sur l'hôte "localhost" sur le port "5432"
         /*$conn_string = "host=127.0.0.1 port=5432 dbname=datanalyser user=postgres password=Mq8aw7HJE";
         $dbconn = pg_connect($conn_string) or die ("Nao consegui conectar ao PostGres --> ". pg_last_error($dbconn));
@@ -92,7 +95,7 @@ exit('ici');
         ));
     }
 
-    public function getDefaultManager() {
-        $this->get('default.manager');
+    public function getAppCrawler() {
+        return $this->get('app.crawler');
     }
 }
