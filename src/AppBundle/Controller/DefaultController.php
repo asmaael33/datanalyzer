@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Service\Crawler;
+use AppBundle\Manager\DefaultManager;
 
 class DefaultController extends Controller
 {
@@ -18,7 +19,8 @@ class DefaultController extends Controller
         /*****************************COLLECTEUR********************************/
         /***********************************************************************/
         $crawler = new Crawler('http://www.watchland.com', 3);
-
+        $this->getDefaultManager();
+exit('ici');
 // connexion à une base de données nommée "marie" sur l'hôte "localhost" sur le port "5432"
         /*$conn_string = "host=127.0.0.1 port=5432 dbname=datanalyser user=postgres password=Mq8aw7HJE";
         $dbconn = pg_connect($conn_string) or die ("Nao consegui conectar ao PostGres --> ". pg_last_error($dbconn));
@@ -88,5 +90,9 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ));
+    }
+
+    public function getDefaultManager() {
+        $this->get('default.manager');
     }
 }

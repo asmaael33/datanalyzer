@@ -2,14 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class Node
- * @package Iad\Bundle\ClubBusinessBundle\Entity
+ * @package AppBundle\Entity
  *
- * @ORM\Table(name="event")
- * @ORM\Entity(repositoryClass="Iad\Bundle\ClubBusinessBundle\Repository\EventRepository")
- * @EventTitle(groups={"Default", "Event"})
- * @OpenTrainingPole(groups={"Default", "Event"})
+ * @ORM\Table(name="node")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\NodeRepository")
  */
 class Node
 {
