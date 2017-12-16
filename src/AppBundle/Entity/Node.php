@@ -33,7 +33,7 @@ class Node
     /**
      * @var string
      *
-     * @ORM\Column(name="targeted_audience", type="json_array")
+     * @ORM\Column(name="parents", type="json_array")
      */
     private $parents;
 
