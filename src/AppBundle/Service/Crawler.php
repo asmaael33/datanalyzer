@@ -2,6 +2,8 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Node;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Class Crawler
@@ -11,6 +13,7 @@ class Crawler
 
     private $depth = 2;
     private $url;
+    private $em;
     private $results = array();
     private $same_host = false;
     private $host;
@@ -26,8 +29,14 @@ class Crawler
         $this->setHost($this->getHostFromUrl($url));
     }
 
-    public function __construct($url = null, $depth = 1, $same_host = false)
+    public function setEm(EntityManager $em)
     {
+        $this->em = $em;
+    }
+
+    public function __construct($url = null, $depth = 1, $em, $same_host = false)
+    {
+        $this->setEm($em);
         if (!empty($url)) {
             $this->setUrl($url);
         }
@@ -39,6 +48,10 @@ class Crawler
 
     public function crawl()
     {
+        $nodeRepo = $this->em->getRepository(Node::class);
+        echo count($nodeRepo->findAll());exit;
+        exit('STOP');
+
         if (empty($this->url)) {
             throw new \Exception('URL must be set');
         }

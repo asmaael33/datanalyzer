@@ -15,20 +15,18 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function collectAction(Request $request)
     {
-        //Test connexion à db
-
-        $em = $this->getDoctrine()->getManager();
-        $nodeRepo = $em->getRepository(Node::class);
-        echo count($nodeRepo->findAll());exit;
-        exit('STOP');
         /***********************************************************************/
         /*****************************COLLECTEUR********************************/
         /***********************************************************************/
         $crawler = $this->getAppCrawler();
         $result = $crawler->crawl();
 
+        $em = $this->getDoctrine()->getManager();
+        $nodeRepo = $em->getRepository(Node::class);
+        echo count($nodeRepo->findAll());exit;
+        exit('STOP');
 
 
 // connexion à une base de données nommée "marie" sur l'hôte "localhost" sur le port "5432"

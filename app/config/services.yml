@@ -6,4 +6,4 @@ parameters:
 services:
     app.crawler:
         class: AppBundle\Service\Crawler
-        arguments: ['%hub_url%', '%hub_depth%']
+        arguments: ['%hub_url%', '%hub_depth%', '@doctrine.orm.entity_manager']
