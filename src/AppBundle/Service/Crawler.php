@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityManager;
 class Crawler
 {
 
-    private $depth = 2;
+    private $depth;
     private $url;
     private $em;
     private $results = array();
@@ -48,10 +48,6 @@ class Crawler
 
     public function crawl()
     {
-        $nodeRepo = $this->em->getRepository(Node::class);
-        echo count($nodeRepo->findAll());exit;
-        exit('STOP');
-
         if (empty($this->url)) {
             throw new \Exception('URL must be set');
         }
@@ -63,6 +59,10 @@ class Crawler
             return (strtolower($a['url']) > strtolower($b['url'])) ? 1 : -1;
         });
 
+
+        /*$nodeRepo = $this->em->getRepository(Node::class);
+        $node = new Node();*/
+        var_dump($this->results);
         return $this->results;
     }
 
@@ -72,6 +72,10 @@ class Crawler
 
         if (empty($url)) return;
 
+
+        echo "(".$url."|".$this->buildUrl($this->url, $url).")";
+        $urlParent = $url;
+        $urlChild = $this->buildUrl($this->url, $url);
         if (!$url = $this->buildUrl($this->url, $url)) {
             return;
         }
@@ -84,9 +88,10 @@ class Crawler
         @$dom->loadHTMLFile($url);
 
         $this->results[$url] = array(
-            'url' => $url,
+            'url' => $urlChild,
             'depth' => $depth,
-            'content' => $dom->saveHTML()
+            'parents' => $urlParent,
+            //'content' => $dom->saveHTML()
         );
 
         // saving links to find difference later
@@ -154,6 +159,7 @@ class Crawler
         if ($this->same_host && $this->host != $this->getHostFromUrl($href)) {
             return false;
         }
+
         return $href;
     }
 
